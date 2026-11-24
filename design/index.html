@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-resolution="square">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1024, height=1024" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-700.ttf") format("truetype");
+        font-weight: 700;
+      }
+      @font-face {
+        font-family: "Playfair Display";
+        src: url("assets/fonts/PlayfairDisplay-500Italic.ttf") format("truetype");
+        font-weight: 500;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/Poppins_400Regular.ttf") format("truetype");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/Poppins_500Medium.ttf") format("truetype");
+        font-weight: 500;
+      }
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/Poppins_600SemiBold.ttf") format("truetype");
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: "Poppins";
+        src: url("assets/fonts/Poppins_700Bold.ttf") format("truetype");
+        font-weight: 700;
+      }
+      :root {
+        --paper: #f7f3ea;
+        --ink: #141310;
+        --soft: #4c463c;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1024px;
+        height: 1024px;
+        overflow: hidden;
+        background: var(--paper);
+      }
+      #root {
+        width: 1024px;
+        height: 1024px;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .page {
+        width: 100%;
+        height: 100%;
+        padding: 26px 44px 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* ---------- masthead ---------- */
+      .masthead {
+        text-align: center;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 70px;
+        letter-spacing: 1px;
+        line-height: 1.02;
+      }
+      .dateline {
+        margin-top: 9px;
+        border-top: 4px solid var(--ink);
+        border-bottom: 1.5px solid var(--ink);
+        padding: 6px 0 7px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-family: "Poppins", sans-serif;
+      }
+      .dateline .day {
+        font-weight: 700;
+        font-size: 23px;
+        letter-spacing: 2.5px;
+      }
+      .dateline .side {
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1.6px;
+        color: var(--soft);
+      }
+      /* ---------- lead ---------- */
+      .lead {
+        margin-top: 13px;
+        text-align: center;
+      }
+      .kicker {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 3.5px;
+        color: var(--soft);
+      }
+      .lead h1 {
+        margin-top: 8px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 1.08;
+      }
+      .lead .standfirst {
+        margin: 8px auto 0;
+        max-width: 880px;
+        font-family: "Playfair Display", serif;
+        font-weight: 500;
+        font-style: italic;
+        font-size: 22.5px;
+        line-height: 1.3;
+      }
+      .rule-thick {
+        margin-top: 11px;
+        border-top: 3px solid var(--ink);
+      }
+      /* ---------- story grid ---------- */
+      .grid {
+        margin-top: 11px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 36px;
+        row-gap: 11px;
+      }
+      .story h2 {
+        margin-top: 5px;
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 27px;
+        line-height: 1.12;
+      }
+      .story p {
+        margin-top: 6px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-size: 18.5px;
+        line-height: 1.28;
+        color: #26231d;
+      }
+      .story .kicker {
+        font-size: 14.5px;
+        letter-spacing: 3px;
+      }
+      /* ---------- in brief ---------- */
+      .brief {
+        margin-top: 11px;
+        border: 2.5px solid var(--ink);
+      }
+      .brief .brief-head {
+        background: var(--ink);
+        color: var(--paper);
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 4px;
+        padding: 5px 14px 6px;
+      }
+      .brief ul {
+        list-style: none;
+        padding: 7px 16px 8px;
+      }
+      .brief li {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-size: 18.5px;
+        line-height: 1.24;
+        padding: 2px 0;
+        border-bottom: 1px solid #cfc8b8;
+      }
+      .brief li:last-child {
+        border-bottom: none;
+      }
+      .brief li b {
+        font-weight: 700;
+        letter-spacing: 0.6px;
+      }
+      /* ---------- footer ---------- */
+      .footer {
+        margin-top: auto;
+        border-top: 1.5px solid var(--ink);
+        padding-top: 9px;
+        text-align: center;
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        font-size: 15.5px;
+        letter-spacing: 0.8px;
+        color: var(--soft);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="2"
+      data-width="1024"
+      data-height="1024"
+    >
+      <div class="page clip" id="front-page" data-start="0" data-duration="2" data-track-index="0">
+        <div class="masthead">THE WORLD TODAY</div>
+        <div class="dateline">
+          <span class="side">ONE IMAGE</span>
+          <span class="day">TUESDAY, 24 NOVEMBER 2026</span>
+          <span class="side">THE DAY&rsquo;S NEWS</span>
+        </div>
+
+        <div class="lead">
+          <div class="kicker">LEAD STORY &middot; LIBYA</div>
+          <h1>UKRAINE SINKS RUSSIAN WARSHIP OFF LIBYA</h1>
+          <p class="standfirst">
+            Naval drones destroy the corvette Merkury in Benghazi port. Zelensky confirms the
+            strike as the UN calls for an independent investigation and Libya demands answers
+            from Kyiv.
+          </p>
+        </div>
+
+        <div class="rule-thick"></div>
+
+        <div class="grid">
+          <div class="story">
+            <div class="kicker">MARKETS</div>
+            <h2>HUANG RETURNS TO NVIDIA; MARKETS SOAR</h2>
+            <p>
+              The board reinstates Nvidia&rsquo;s founder as CEO after pressure from President
+              Trump, 11 days after he resigned. Nvidia jumps 31%; the S&amp;P 500 gains 4.7%
+              and the Nasdaq 6.5%.
+            </p>
+          </div>
+          <div class="story">
+            <div class="kicker">WORLD COURT</div>
+            <h2>14 NATIONS BACK GENOCIDE RULING</h2>
+            <p>
+              Countries affirm the world court&rsquo;s finding that Myanmar committed genocide
+              against the Rohingya. Britain sanctions five senior Myanmar officers.
+            </p>
+          </div>
+          <div class="story">
+            <div class="kicker">CLIMATE</div>
+            <h2>COP31 ENDS WITHOUT A DEAL</h2>
+            <p>
+              The Antalya climate summit closes after 44 hours of overtime as the EU and more
+              than 130 nations reject a draft omitting any fossil-fuel transition.
+            </p>
+          </div>
+          <div class="story">
+            <div class="kicker">EUROPE</div>
+            <h2>NATO ON ALERT AFTER MISSILES FALL IN POLAND</h2>
+            <p>
+              The alliance rushes early-warning aircraft east and vows space defence amid
+              reports of a Russian nuclear-armed satellite.
+            </p>
+          </div>
+        </div>
+
+        <div class="brief">
+          <div class="brief-head">IN BRIEF</div>
+          <ul>
+            <li><b>HORMUZ</b> &mdash; Iran&rsquo;s IRGC says three tankers hit mines despite a US escort.</li>
+            <li><b>INDONESIA</b> &mdash; Factory-fire toll reaches 26 as search continues in Banten.</li>
+            <li><b>SPACE</b> &mdash; Pakistani astronaut named to China&rsquo;s Shenzhou-24 crew &mdash; first foreigner set to visit Tiangong.</li>
+            <li><b>HEALTH</b> &mdash; United States loses measles elimination status; Pennsylvania reports a ninth death.</li>
+            <li><b>AI</b> &mdash; UN chief urges a global AI-risk framework within a year.</li>
+          </ul>
+        </div>
+
+        <div class="footer">
+          Compiled from reports by Reuters, AP, AFP, BBC, The Guardian and Xinhua &mdash;
+          Tuesday, 24 November 2026
+        </div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
