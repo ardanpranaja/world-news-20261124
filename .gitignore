@@ -1,1 +1,3 @@
-out/design/.hyperframes/node_modules/
+out/
+design/.hyperframes/
+node_modules/
